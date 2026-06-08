@@ -163,7 +163,7 @@ export interface CausalityScore {
 
 export interface FlakeRecord {
   testName: string;
-  file?: string;
+  file?: string | undefined;
   failures: FlakeFailureOccurrence[];
   classification: "flaky" | "broken" | "unknown";
 }

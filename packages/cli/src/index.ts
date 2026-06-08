@@ -3,6 +3,7 @@ import { Command } from "commander";
 
 import { captureLocalEnvironment } from "./commands/captureLocal.js";
 import { diffBundle } from "./commands/diff.js";
+import { renderHistory } from "./commands/history.js";
 import { inspectBundle } from "./commands/inspect.js";
 import { replayFailure } from "./commands/replay.js";
 import { createLogger } from "./lib/logger.js";
@@ -72,6 +73,19 @@ export function createProgram(): Command {
         );
       },
     );
+
+  program
+    .command("history")
+    .description("Show failure history for a test.")
+    .argument("<test-name>", "Test name or partial test name.")
+    .option(
+      "--history <path>",
+      "Path to a failure history JSON file.",
+      ".ci-failure-pack-history.json",
+    )
+    .action(async (testName: string, options: { history: string }): Promise<void> => {
+      process.stdout.write(`${await renderHistory(testName, { historyPath: options.history })}\n`);
+    });
 
   return program;
 }
