@@ -215,8 +215,8 @@ export interface PackageChange {
 
 export interface ChangedFileCorrelation {
   classification: "direct" | "indirect" | "none" | "unknown";
-  failingFile?: string;
-  changedFile?: string;
+  failingFile?: string | undefined;
+  changedFile?: string | undefined;
   explanation: string;
 }
 
