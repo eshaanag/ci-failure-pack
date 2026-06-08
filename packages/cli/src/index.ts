@@ -4,6 +4,7 @@ import { captureLocalEnvironment } from "./commands/captureLocal.js";
 import { diffBundle } from "./commands/diff.js";
 import { renderHistory } from "./commands/history.js";
 import { inspectBundle } from "./commands/inspect.js";
+import { openBundleReport } from "./commands/open.js";
 import { replayFailure, type ReplayOptions } from "./commands/replay.js";
 import { createLogger } from "./lib/logger.js";
 
@@ -98,6 +99,14 @@ export function createProgram(): Command {
     )
     .action(async (testName: string, options: { history: string }): Promise<void> => {
       process.stdout.write(`${await renderHistory(testName, { historyPath: options.history })}\n`);
+    });
+
+  program
+    .command("open")
+    .description("Open the first HTML report captured in a failure bundle.")
+    .argument("<bundle>", "Path to failure-pack.zip")
+    .action(async (bundle: string): Promise<void> => {
+      process.stdout.write(`${await openBundleReport(bundle)}\n`);
     });
 
   return program;

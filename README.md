@@ -57,32 +57,32 @@ UserService creates users, Billing retries declined cards — 2 assertions faile
 
 ## Features
 
-| Status         | Feature                                                                                 |
-| -------------- | --------------------------------------------------------------------------------------- |
-| ✅ Complete    | Product requirements, technical design, flows, and schema documents                     |
-| ✅ Complete    | pnpm monorepo foundation, shared interfaces, Zod schemas, action skeleton, CLI skeleton |
-| ✅ Complete    | Environment capture with secret redaction                                               |
-| ✅ Complete    | Test output parsing for JUnit, Jest/Vitest JSON, TAP, Playwright, Go, and Rust          |
-| ✅ Complete    | Git context capture                                                                     |
-| ✅ Complete    | Failed command capture                                                                  |
-| ✅ Complete    | Validated ZIP bundle packaging                                                          |
-| ✅ Complete    | PR comment posting and update flow                                                      |
-| ✅ Complete    | Causality scoring                                                                       |
-| ✅ Complete    | Changed-file correlation                                                                |
-| ✅ Complete    | Cache state reporting                                                                   |
-| ✅ Complete    | Reproduction command generation                                                         |
-| ✅ Complete    | CLI `inspect`                                                                           |
-| ✅ Complete    | CLI `diff`                                                                              |
-| ✅ Complete    | CLI `capture-local`                                                                     |
-| ✅ Complete    | CLI `replay`                                                                            |
-| ✅ Complete    | CLI `history`                                                                           |
-| ✅ Complete    | Flaky test detection                                                                    |
-| ✅ Complete    | Configuration loading                                                                   |
-| ✅ Complete    | Lint and typecheck failure parsing                                                      |
-| ✅ Complete    | Docker build failure parsing                                                            |
-| ✅ Complete    | End-to-end fixture integration tests                                                    |
-| 📋 Planned     | CLI `open`                                                                              |
-| 📋 Planned     | Semantic release and npm publishing                                                     |
+| Status      | Feature                                                                                 |
+| ----------- | --------------------------------------------------------------------------------------- |
+| ✅ Complete | Product requirements, technical design, flows, and schema documents                     |
+| ✅ Complete | pnpm monorepo foundation, shared interfaces, Zod schemas, action skeleton, CLI skeleton |
+| ✅ Complete | Environment capture with secret redaction                                               |
+| ✅ Complete | Test output parsing for JUnit, Jest/Vitest JSON, TAP, Playwright, Go, and Rust          |
+| ✅ Complete | Git context capture                                                                     |
+| ✅ Complete | Failed command capture                                                                  |
+| ✅ Complete | Validated ZIP bundle packaging                                                          |
+| ✅ Complete | PR comment posting and update flow                                                      |
+| ✅ Complete | Causality scoring                                                                       |
+| ✅ Complete | Changed-file correlation                                                                |
+| ✅ Complete | Cache state reporting                                                                   |
+| ✅ Complete | Reproduction command generation                                                         |
+| ✅ Complete | CLI `inspect`                                                                           |
+| ✅ Complete | CLI `diff`                                                                              |
+| ✅ Complete | CLI `capture-local`                                                                     |
+| ✅ Complete | CLI `replay`                                                                            |
+| ✅ Complete | CLI `history`                                                                           |
+| ✅ Complete | Flaky test detection                                                                    |
+| ✅ Complete | Configuration loading                                                                   |
+| ✅ Complete | Lint and typecheck failure parsing                                                      |
+| ✅ Complete | Docker build failure parsing                                                            |
+| ✅ Complete | End-to-end fixture integration tests                                                    |
+| ✅ Complete | CLI `open`                                                                              |
+| 📋 Planned  | Semantic release and npm publishing                                                     |
 
 ## Action Inputs
 
@@ -133,7 +133,7 @@ npx ci-failure-pack history "Button renders"
 npx ci-failure-pack open failure-pack.zip
 ```
 
-Current implementation status: `inspect`, `diff`, `capture-local`, `replay`, `history`, flaky detection, configuration loading, lint/typecheck parsing, and Docker parsing are implemented; integration testing continues next.
+Current implementation status: `inspect`, `diff`, `capture-local`, `replay`, `history`, and `open` are implemented. Capture, intelligence, parsers, flaky detection, configuration loading, lint/typecheck parsing, Docker parsing, and fixture integration tests are complete.
 
 ## Comparison
 
