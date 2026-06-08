@@ -70,8 +70,9 @@ UserService creates users, Billing retries declined cards — 2 assertions faile
 | ✅ Complete    | Causality scoring                                                                       |
 | ✅ Complete    | Changed-file correlation                                                                |
 | ✅ Complete    | Cache state reporting                                                                   |
-| 🔄 In Progress | Reproduction command generation                                                         |
-| 📋 Planned     | CLI `inspect`, `diff`, `capture-local`, `replay`, `history`, and `open`                 |
+| ✅ Complete    | Reproduction command generation                                                         |
+| 🔄 In Progress | CLI `inspect`                                                                           |
+| 📋 Planned     | CLI `diff`, `capture-local`, `replay`, `history`, and `open`                            |
 | 📋 Planned     | Flaky test detection                                                                    |
 | 📋 Planned     | Lint, typecheck, and Docker build failure parsing                                       |
 | 📋 Planned     | End-to-end fixture integration tests                                                    |
