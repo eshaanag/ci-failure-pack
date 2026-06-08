@@ -114,20 +114,20 @@ export interface ParsedTestOutput {
 
 export interface TestResult {
   name: string;
-  suite?: string;
-  file?: string;
+  suite?: string | undefined;
+  file?: string | undefined;
   status: "passed" | "failed" | "skipped";
-  durationMs?: number;
+  durationMs?: number | undefined;
 }
 
 export interface TestFailure {
   name: string;
-  suite?: string;
-  file?: string;
-  line?: number;
-  assertion?: string;
-  stack?: string;
-  durationMs?: number;
+  suite?: string | undefined;
+  file?: string | undefined;
+  line?: number | undefined;
+  assertion?: string | undefined;
+  stack?: string | undefined;
+  durationMs?: number | undefined;
 }
 
 export interface ParserError {

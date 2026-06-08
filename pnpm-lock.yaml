@@ -80,6 +80,9 @@ importers:
       ora:
         specifier: ^8.2.0
         version: 8.2.0
+      zod:
+        specifier: ^3.25.0
+        version: 3.25.76
 
   packages/shared:
     dependencies:

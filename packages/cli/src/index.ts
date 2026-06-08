@@ -1,7 +1,7 @@
 #!/usr/bin/env node
-import chalk from "chalk";
 import { Command } from "commander";
 
+import { inspectBundle } from "./commands/inspect.js";
 import { createLogger } from "./lib/logger.js";
 
 const logger = createLogger();
@@ -23,11 +23,8 @@ export function createProgram(): Command {
     .command("inspect")
     .description("Inspect a failure-pack.zip bundle.")
     .argument("<bundle>", "Path to failure-pack.zip")
-    .action((bundle: string): void => {
-      process.stdout.write(
-        `${chalk.yellow("inspect is not implemented yet")} ${chalk.gray(`(${bundle})`)}\n`,
-      );
-      process.stdout.write("Phase 3 will validate and summarize this bundle.\n");
+    .action(async (bundle: string): Promise<void> => {
+      process.stdout.write(`${await inspectBundle(bundle)}\n`);
     });
 
   return program;
