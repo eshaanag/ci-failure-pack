@@ -67,7 +67,8 @@ UserService creates users, Billing retries declined cards — 2 assertions faile
 | ✅ Complete    | Failed command capture                                                                  |
 | ✅ Complete    | Validated ZIP bundle packaging                                                          |
 | ✅ Complete    | PR comment posting and update flow                                                      |
-| 🔄 In Progress | Causality scoring and changed-file correlation                                          |
+| ✅ Complete    | Causality scoring                                                                       |
+| 🔄 In Progress | Changed-file correlation                                                                |
 | 📋 Planned     | Cache state reporting                                                                   |
 | 📋 Planned     | Reproduction command generation                                                         |
 | 📋 Planned     | CLI `inspect`, `diff`, `capture-local`, `replay`, `history`, and `open`                 |
