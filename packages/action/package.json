@@ -12,6 +12,11 @@
   },
   "dependencies": {
     "@ci-failure-pack/shared": "workspace:*",
-    "archiver": "^7.0.1"
+    "archiver": "^7.0.1",
+    "fast-glob": "^3.3.3",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "adm-zip": "^0.5.16"
   }
 }

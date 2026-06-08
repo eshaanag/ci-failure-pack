@@ -51,7 +51,7 @@ export interface RepositoryMetadata {
   name: string;
   fullName: string;
   defaultBranch: string;
-  pullRequestNumber?: number;
+  pullRequestNumber?: number | undefined;
 }
 
 export interface WorkflowMetadata {
