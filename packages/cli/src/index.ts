@@ -1,14 +1,33 @@
-#!/usr/bin/env node
 import { Command } from "commander";
 
 import { captureLocalEnvironment } from "./commands/captureLocal.js";
 import { diffBundle } from "./commands/diff.js";
 import { renderHistory } from "./commands/history.js";
 import { inspectBundle } from "./commands/inspect.js";
-import { replayFailure } from "./commands/replay.js";
+import { replayFailure, type ReplayOptions } from "./commands/replay.js";
 import { createLogger } from "./lib/logger.js";
 
 const logger = createLogger();
+
+interface ReplayCliOptions {
+  dryRun?: boolean | undefined;
+  install?: boolean | undefined;
+  yes?: boolean | undefined;
+}
+
+/**
+ * Converts Commander replay flags into replay execution options.
+ *
+ * @param options - Raw Commander options for the replay command.
+ * @returns Replay options with install skipped only when explicitly requested.
+ */
+export function normalizeReplayOptions(options: ReplayCliOptions): ReplayOptions {
+  return {
+    dryRun: options.dryRun === true,
+    noInstall: options.install === false,
+    yes: options.yes === true,
+  };
+}
 
 /**
  * Creates the root CI Failure Pack CLI program.
@@ -57,20 +76,14 @@ export function createProgram(): Command {
     .description("Replay a failure bundle locally.")
     .argument("<bundle>", "Path to failure-pack.zip")
     .option("--dry-run", "Print replay steps without executing them.", false)
-    .option("--no-install", "Skip dependency installation steps.", false)
+    .option("--no-install", "Skip dependency installation steps.")
     .option("-y, --yes", "Proceed through safety prompts.", false)
     .action(
       async (
         bundle: string,
         options: { dryRun: boolean; install: boolean; yes: boolean },
       ): Promise<void> => {
-        process.stdout.write(
-          `${await replayFailure(bundle, {
-            dryRun: options.dryRun,
-            noInstall: !options.install,
-            yes: options.yes,
-          })}\n`,
-        );
+        process.stdout.write(`${await replayFailure(bundle, normalizeReplayOptions(options))}\n`);
       },
     );
 
@@ -108,5 +121,3 @@ export async function run(argv: string[]): Promise<void> {
     process.exitCode = 1;
   }
 }
-
-void run(process.argv);
