@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
+import { captureLocalEnvironment } from "./commands/captureLocal.js";
 import { diffBundle } from "./commands/diff.js";
 import { inspectBundle } from "./commands/inspect.js";
 import { createLogger } from "./lib/logger.js";
@@ -34,6 +35,19 @@ export function createProgram(): Command {
     .argument("<bundle>", "Path to failure-pack.zip")
     .action(async (bundle: string): Promise<void> => {
       process.stdout.write(`${await diffBundle(bundle)}\n`);
+    });
+
+  program
+    .command("capture-local")
+    .description("Capture this machine's environment for CI comparison.")
+    .option("-o, --output <path>", "Path for the local snapshot.", ".ci-failure-pack-local.json")
+    .option("-y, --yes", "Overwrite an existing snapshot without prompting.", false)
+    .action(async (options: { output: string; yes: boolean }): Promise<void> => {
+      const result = await captureLocalEnvironment({
+        outputPath: options.output,
+        overwrite: options.yes,
+      });
+      process.stdout.write(`${result.message}\n`);
     });
 
   return program;
