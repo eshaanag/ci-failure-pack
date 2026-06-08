@@ -1,4 +1,5 @@
 export * from "./detect.js";
+export * from "./dockerBuild.js";
 export * from "./eslintJson.js";
 export * from "./goTest.js";
 export * from "./jestJson.js";
