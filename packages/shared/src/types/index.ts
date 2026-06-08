@@ -146,9 +146,9 @@ export interface GitContext {
 }
 
 export interface FailedCommand {
-  stepName?: string;
-  command?: string;
-  exitCode?: number;
+  stepName?: string | undefined;
+  command?: string | undefined;
+  exitCode?: number | undefined;
   logTail: string;
   truncated: boolean;
 }
