@@ -77,9 +77,10 @@ UserService creates users, Billing retries declined cards — 2 assertions faile
 | ✅ Complete    | CLI `replay`                                                                            |
 | ✅ Complete    | CLI `history`                                                                           |
 | ✅ Complete    | Flaky test detection                                                                    |
-| 🔄 In Progress | Configuration loading                                                                   |
+| ✅ Complete    | Configuration loading                                                                   |
+| 🔄 In Progress | Lint and typecheck failure parsing                                                      |
 | 📋 Planned     | CLI `open`                                                                              |
-| 📋 Planned     | Lint, typecheck, and Docker build failure parsing                                       |
+| 📋 Planned     | Docker build failure parsing                                                            |
 | 📋 Planned     | End-to-end fixture integration tests                                                    |
 | 📋 Planned     | Semantic release and npm publishing                                                     |
 
@@ -132,7 +133,7 @@ npx ci-failure-pack history "Button renders"
 npx ci-failure-pack open failure-pack.zip
 ```
 
-Current implementation status: `inspect`, `diff`, `capture-local`, `replay`, `history`, and flaky detection are implemented; configuration loading continues next.
+Current implementation status: `inspect`, `diff`, `capture-local`, `replay`, `history`, flaky detection, and configuration loading are implemented; lint/typecheck parsing continues next.
 
 ## Comparison
 
