@@ -209,8 +209,8 @@ export interface CacheEntry {
 export interface PackageChange {
   name: string;
   changeType: "added" | "removed" | "upgraded" | "downgraded";
-  fromVersion?: string;
-  toVersion?: string;
+  fromVersion?: string | undefined;
+  toVersion?: string | undefined;
 }
 
 export interface ChangedFileCorrelation {
