@@ -136,10 +136,10 @@ export interface ParserError {
 }
 
 export interface GitContext {
-  sha?: string;
-  branch?: string;
-  baseBranch?: string;
-  commitMessage?: string;
+  sha?: string | undefined;
+  branch?: string | undefined;
+  baseBranch?: string | undefined;
+  commitMessage?: string | undefined;
   isPullRequest: boolean;
   changedFiles: string[];
   warnings: string[];
