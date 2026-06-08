@@ -1,0 +1,56 @@
+{
+  "suites": [
+    {
+      "title": "chromium",
+      "suites": [
+        {
+          "title": "tests/login.spec.ts",
+          "specs": [
+            {
+              "title": "login works",
+              "file": "tests/login.spec.ts",
+              "line": 10,
+              "tests": [
+                { "title": "login works", "results": [{ "status": "passed", "duration": 30 }] }
+              ]
+            },
+            {
+              "title": "login rejects bad password",
+              "file": "tests/login.spec.ts",
+              "line": 22,
+              "tests": [
+                {
+                  "title": "login rejects bad password",
+                  "results": [
+                    {
+                      "status": "failed",
+                      "duration": 40,
+                      "errors": [{ "message": "expected visible error", "stack": "stack one" }]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "password reset sends email",
+              "file": "tests/login.spec.ts",
+              "line": 35,
+              "tests": [
+                {
+                  "title": "password reset sends email",
+                  "results": [
+                    {
+                      "status": "timedOut",
+                      "duration": 50,
+                      "errors": [{ "message": "Timeout 30000ms exceeded" }]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

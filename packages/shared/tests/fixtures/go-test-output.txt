@@ -1,0 +1,12 @@
+=== RUN   TestCreateUser
+--- PASS: TestCreateUser (0.01s)
+=== RUN   TestRejectDuplicate
+    user_test.go:24: expected 409, got 500
+--- FAIL: TestRejectDuplicate (0.02s)
+=== RUN   TestSendEmail
+    user_test.go:36: SMTP unavailable
+--- FAIL: TestSendEmail (0.03s)
+=== RUN   TestDeleteUser
+--- PASS: TestDeleteUser (0.01s)
+FAIL
+exit status 1

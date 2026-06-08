@@ -1,0 +1,39 @@
+{
+  "numTotalTests": 4,
+  "numPassedTests": 2,
+  "numFailedTests": 2,
+  "testResults": [
+    {
+      "name": "tests/user.test.ts",
+      "assertionResults": [
+        {
+          "title": "creates users",
+          "fullName": "UserService creates users",
+          "status": "passed",
+          "duration": 10
+        },
+        {
+          "title": "rejects duplicates",
+          "fullName": "UserService rejects duplicates",
+          "status": "failed",
+          "duration": 12,
+          "failureMessages": ["expected 409, got 500"],
+          "location": { "line": 24 }
+        },
+        {
+          "title": "deletes users",
+          "fullName": "UserService deletes users",
+          "status": "passed",
+          "duration": 8
+        },
+        {
+          "title": "sends email",
+          "fullName": "UserService sends email",
+          "status": "failed",
+          "duration": 14,
+          "failureMessages": ["SMTP unavailable"]
+        }
+      ]
+    }
+  ]
+}

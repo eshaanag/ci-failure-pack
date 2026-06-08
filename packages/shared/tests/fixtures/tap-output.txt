@@ -1,0 +1,16 @@
+TAP version 13
+1..4
+ok 1 - creates users
+not ok 2 - rejects duplicates
+  ---
+  file: tests/user.test.ts
+  line: 24
+  message: expected 409, got 500
+  time: 12ms
+  ...
+not ok 3 - sends welcome email
+  ---
+  file: tests/user.test.ts
+  message: SMTP unavailable
+  ...
+ok 4 - deletes users

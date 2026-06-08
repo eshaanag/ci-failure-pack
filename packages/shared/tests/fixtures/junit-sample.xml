@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites tests="4" failures="2" skipped="1" time="0.40">
+  <testsuite name="UserService" tests="4" failures="2" skipped="1" time="0.40">
+    <testcase name="creates users" file="tests/user.test.ts" line="12" time="0.10" />
+    <testcase name="rejects duplicates" file="tests/user.test.ts" line="24" time="0.10">
+      <failure message="expected 409, got 500">AssertionError stack</failure>
+    </testcase>
+    <testcase name="sends welcome email" file="tests/user.test.ts" line="36" time="0.15">
+      <error message="SMTP unavailable">Error stack</error>
+    </testcase>
+    <testcase name="deletes users" file="tests/user.test.ts" line="48" time="0.05">
+      <skipped />
+    </testcase>
+  </testsuite>
+</testsuites>

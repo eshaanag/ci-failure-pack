@@ -1,0 +1,21 @@
+running 4 tests
+test tests::create_user ... ok
+test tests::reject_duplicate ... FAILED
+test tests::send_email ... FAILED
+test tests::delete_user ... ok
+
+failures:
+
+---- tests::reject_duplicate stdout ----
+thread 'tests::reject_duplicate' panicked at src/lib.rs:24:5:
+assertion failed: expected 409, got 500
+
+---- tests::send_email stdout ----
+thread 'tests::send_email' panicked at src/lib.rs:36:5:
+SMTP unavailable
+
+failures:
+    tests::reject_duplicate
+    tests::send_email
+
+test result: FAILED. 2 passed; 2 failed; 0 ignored
