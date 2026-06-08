@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 
+import { diffBundle } from "./commands/diff.js";
 import { inspectBundle } from "./commands/inspect.js";
 import { createLogger } from "./lib/logger.js";
 
@@ -25,6 +26,14 @@ export function createProgram(): Command {
     .argument("<bundle>", "Path to failure-pack.zip")
     .action(async (bundle: string): Promise<void> => {
       process.stdout.write(`${await inspectBundle(bundle)}\n`);
+    });
+
+  program
+    .command("diff")
+    .description("Compare CI environment from a bundle with this machine.")
+    .argument("<bundle>", "Path to failure-pack.zip")
+    .action(async (bundle: string): Promise<void> => {
+      process.stdout.write(`${await diffBundle(bundle)}\n`);
     });
 
   return program;
