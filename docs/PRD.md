@@ -22,6 +22,7 @@ CI failures waste time because the useful facts are scattered across logs, runne
 Mira maintains a popular TypeScript library. She reviews pull requests from contributors across time zones. CI failures are frequent because contributors use different Node versions and package managers. Mira does not want to become every contributor's remote debugger. She needs a PR comment that says which test failed, whether the PR touched related files, and which command the contributor should run next.
 
 Primary needs:
+
 - Works on public forks with minimum permissions.
 - Does not leak secrets into PR comments or artifacts.
 - Updates one comment instead of spamming the thread.
@@ -32,6 +33,7 @@ Primary needs:
 Devon works on a backend service where CI fails multiple times per day. Failures come from integration tests, database URLs, cache misses, and language version drift. Devon can read CI logs, but the time cost is the problem. He needs the first 10 seconds after a failure to reveal the likely cause and the exact failing command.
 
 Primary needs:
+
 - Captures runtime, cache, git, and test output automatically.
 - Flags missing environment variables and version mismatches.
 - Keeps PR comments brief by default.
@@ -42,6 +44,7 @@ Primary needs:
 Ana is shipping a side project and copied a GitHub Actions workflow from a blog. When CI fails, she does not know where to look. She wants an install that is one YAML block, no dashboard, no account, no tokens beyond the built-in `GITHUB_TOKEN`, and no configuration ceremony.
 
 Primary needs:
+
 - Zero-config defaults.
 - Clear errors that explain what to do next.
 - Human-readable CLI output instead of raw JSON.

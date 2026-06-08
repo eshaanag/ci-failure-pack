@@ -1,0 +1,28 @@
+{
+  "name": "ci-failure-pack",
+  "version": "0.1.0",
+  "description": "Inspect, compare, and replay failed CI runs locally.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "ci-failure-pack": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ci-failure-pack/shared": "workspace:*",
+    "adm-zip": "^0.5.16",
+    "chalk": "^5.4.1",
+    "cli-table3": "^0.6.5",
+    "commander": "^14.0.0",
+    "ora": "^8.2.0"
+  }
+}

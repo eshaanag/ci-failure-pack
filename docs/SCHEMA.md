@@ -250,7 +250,7 @@ export const captureErrorSchema = z.object({
   module: z.string().min(1),
   severity: z.enum(["warning", "error"]),
   message: z.string().min(1),
-  recovery: z.string().min(1)
+  recovery: z.string().min(1),
 });
 
 export const repositoryMetadataSchema = z.object({
@@ -258,7 +258,7 @@ export const repositoryMetadataSchema = z.object({
   name: z.string().min(1),
   fullName: z.string().min(1),
   defaultBranch: z.string().min(1),
-  pullRequestNumber: z.number().int().positive().optional()
+  pullRequestNumber: z.number().int().positive().optional(),
 });
 
 export const workflowMetadataSchema = z.object({
@@ -267,7 +267,7 @@ export const workflowMetadataSchema = z.object({
   workflowName: z.string().min(1),
   jobName: z.string().min(1),
   runnerOs: z.string().min(1),
-  eventName: z.string().min(1)
+  eventName: z.string().min(1),
 });
 
 export const bundleFileEntrySchema = z.object({
@@ -275,7 +275,7 @@ export const bundleFileEntrySchema = z.object({
   mediaType: z.string().min(1),
   required: z.boolean(),
   sizeBytes: z.number().int().nonnegative(),
-  sha256: z.string().regex(/^[a-f0-9]{64}$/)
+  sha256: z.string().regex(/^[a-f0-9]{64}$/),
 });
 
 export const bundleManifestSchema = z.object({
@@ -287,25 +287,31 @@ export const bundleManifestSchema = z.object({
   repository: repositoryMetadataSchema,
   workflow: workflowMetadataSchema,
   files: z.array(bundleFileEntrySchema),
-  errors: z.array(captureErrorSchema)
+  errors: z.array(captureErrorSchema),
 });
 
 export const environmentSnapshotSchema = z.object({
   capturedAt: z.string().datetime(),
-  safe: z.array(z.object({
-    name: z.string().min(1),
-    value: z.string(),
-    source: z.enum(["process", "detected", "config"])
-  })),
-  redacted: z.array(z.object({
-    name: z.string().min(1),
-    marker: z.string().min(1),
-    reason: z.enum(["name", "config", "entropy", "github-mask"])
-  })),
-  missing: z.array(z.object({
-    name: z.string().min(1),
-    expectedBecause: z.string().min(1)
-  }))
+  safe: z.array(
+    z.object({
+      name: z.string().min(1),
+      value: z.string(),
+      source: z.enum(["process", "detected", "config"]),
+    }),
+  ),
+  redacted: z.array(
+    z.object({
+      name: z.string().min(1),
+      marker: z.string().min(1),
+      reason: z.enum(["name", "config", "entropy", "github-mask"]),
+    }),
+  ),
+  missing: z.array(
+    z.object({
+      name: z.string().min(1),
+      expectedBecause: z.string().min(1),
+    }),
+  ),
 });
 
 export const testFailureSchema = z.object({
@@ -315,7 +321,7 @@ export const testFailureSchema = z.object({
   line: z.number().int().positive().optional(),
   assertion: z.string().optional(),
   stack: z.string().optional(),
-  durationMs: z.number().nonnegative().optional()
+  durationMs: z.number().nonnegative().optional(),
 });
 
 export const parsedTestOutputSchema = z.object({
@@ -329,17 +335,19 @@ export const parsedTestOutputSchema = z.object({
     "eslint-json",
     "tsc",
     "docker-build",
-    "unknown"
+    "unknown",
   ]),
   total: z.number().int().nonnegative(),
   passed: z.number().int().nonnegative(),
   skipped: z.number().int().nonnegative(),
   failed: z.array(testFailureSchema),
   durationMs: z.number().nonnegative(),
-  parserErrors: z.array(z.object({
-    message: z.string().min(1),
-    recovery: z.string().min(1)
-  }))
+  parserErrors: z.array(
+    z.object({
+      message: z.string().min(1),
+      recovery: z.string().min(1),
+    }),
+  ),
 });
 ```
 
@@ -347,32 +355,26 @@ The implementation exports schemas for every interface, including `FailureBundle
 
 ## manifest.json Fields
 
-| Field | Type | Description |
-| --- | --- | --- |
-| `schemaVersion` | string | Bundle schema version. |
-| `bundleId` | UUID | Unique bundle identifier. |
-| `capturedAt` | ISO datetime | Capture time. |
-| `toolVersion` | string | CI Failure Pack version. |
-| `source` | enum | `github-actions` or `local-fixture`. |
-| `repository` | object | Owner, repo, default branch, PR number. |
-| `workflow` | object | Run, attempt, workflow, job, runner, event. |
-| `files` | array | ZIP file index with hashes. |
-| `errors` | array | Non-critical capture errors. |
+| Field           | Type         | Description                                 |
+| --------------- | ------------ | ------------------------------------------- |
+| `schemaVersion` | string       | Bundle schema version.                      |
+| `bundleId`      | UUID         | Unique bundle identifier.                   |
+| `capturedAt`    | ISO datetime | Capture time.                               |
+| `toolVersion`   | string       | CI Failure Pack version.                    |
+| `source`        | enum         | `github-actions` or `local-fixture`.        |
+| `repository`    | object       | Owner, repo, default branch, PR number.     |
+| `workflow`      | object       | Run, attempt, workflow, job, runner, event. |
+| `files`         | array        | ZIP file index with hashes.                 |
+| `errors`        | array        | Non-critical capture errors.                |
 
 ## env.json
 
 ```json
 {
   "capturedAt": "2026-06-08T00:00:00.000Z",
-  "safe": [
-    { "name": "CI", "value": "true", "source": "process" }
-  ],
-  "redacted": [
-    { "name": "GITHUB_TOKEN", "marker": "[REDACTED:name]", "reason": "name" }
-  ],
-  "missing": [
-    { "name": "NODE_ENV", "expectedBecause": "common test environment variable" }
-  ]
+  "safe": [{ "name": "CI", "value": "true", "source": "process" }],
+  "redacted": [{ "name": "GITHUB_TOKEN", "marker": "[REDACTED:name]", "reason": "name" }],
+  "missing": [{ "name": "NODE_ENV", "expectedBecause": "common test environment variable" }]
 }
 ```
 

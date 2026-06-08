@@ -1,0 +1,46 @@
+name: "CI Failure Pack"
+description: "Capture failed CI evidence, post a brief PR diagnosis, and create a local replay bundle."
+author: "ci-failure-pack"
+inputs:
+  failed-step-name:
+    description: "Name of the workflow step that failed."
+    required: false
+  failed-command:
+    description: "Command that failed in the previous step."
+    required: false
+  exit-code:
+    description: "Exit code from the failed command."
+    required: false
+  log-tail:
+    description: "Tail of the failed step log."
+    required: false
+  log-tail-lines:
+    description: "Maximum number of log lines to include."
+    required: false
+    default: "200"
+  comment-verbosity:
+    description: "PR comment verbosity: brief, standard, or full."
+    required: false
+    default: "brief"
+  bundle-name:
+    description: "Name of the generated ZIP artifact."
+    required: false
+    default: "failure-pack.zip"
+  config-path:
+    description: "Optional path to .ci-failure-pack.yml."
+    required: false
+runs:
+  using: "composite"
+  steps:
+    - name: "Capture CI failure pack"
+      shell: bash
+      run: node "$GITHUB_ACTION_PATH/packages/action/dist/main.cjs"
+      env:
+        CFP_FAILED_STEP_NAME: ${{ inputs.failed-step-name }}
+        CFP_FAILED_COMMAND: ${{ inputs.failed-command }}
+        CFP_EXIT_CODE: ${{ inputs.exit-code }}
+        CFP_LOG_TAIL: ${{ inputs.log-tail }}
+        CFP_LOG_TAIL_LINES: ${{ inputs.log-tail-lines }}
+        CFP_COMMENT_VERBOSITY: ${{ inputs.comment-verbosity }}
+        CFP_BUNDLE_NAME: ${{ inputs.bundle-name }}
+        CFP_CONFIG_PATH: ${{ inputs.config-path }}

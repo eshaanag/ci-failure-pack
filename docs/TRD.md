@@ -158,16 +158,16 @@ Malformed input produces a partial result with `parserErrors`; it does not throw
 
 Each signal returns either zero or a configured weight. Triggered weights are normalized into percentages.
 
-| Signal | Weight | Evidence |
-| --- | ---: | --- |
-| `lockfile_changed` | 90 | PR changed lockfile |
-| `runtime_version_mismatch` | 85 | CI runtime differs from repo version file |
-| `missing_env_var` | 80 | test references env var missing in CI |
-| `cache_miss_after_lockfile` | 65 | cache miss and lockfile changed |
-| `test_file_changed` | 55 | failing test file changed |
-| `flaky_history` | 40 | failure history without related changes |
-| `network_dependent_test` | 20 | test name suggests network dependency |
-| `runner_resource_pressure` | 10 | job duration exceeds median by 3x |
+| Signal                      | Weight | Evidence                                  |
+| --------------------------- | -----: | ----------------------------------------- |
+| `lockfile_changed`          |     90 | PR changed lockfile                       |
+| `runtime_version_mismatch`  |     85 | CI runtime differs from repo version file |
+| `missing_env_var`           |     80 | test references env var missing in CI     |
+| `cache_miss_after_lockfile` |     65 | cache miss and lockfile changed           |
+| `test_file_changed`         |     55 | failing test file changed                 |
+| `flaky_history`             |     40 | failure history without related changes   |
+| `network_dependent_test`    |     20 | test name suggests network dependency     |
+| `runner_resource_pressure`  |     10 | job duration exceeds median by 3x         |
 
 If no signal triggers, the top cause is `unknown` with guidance to inspect the log tail.
 

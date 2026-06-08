@@ -1,0 +1,34 @@
+# Environment
+.env
+.env.local
+.env*.local
+
+# Private build documents (never push)
+PROGRESS.md
+CHECKPOINT.md
+
+# Dependencies
+node_modules/
+
+# Build (dist/ committed only on release)
+dist/
+.turbo/
+*.tsbuildinfo
+
+# Testing
+coverage/
+test-results/
+playwright-report/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp

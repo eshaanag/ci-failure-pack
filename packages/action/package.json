@@ -1,0 +1,17 @@
+{
+  "name": "@ci-failure-pack/action",
+  "version": "0.1.0",
+  "private": true,
+  "description": "GitHub Action runtime for CI Failure Pack.",
+  "type": "module",
+  "main": "./dist/main.cjs",
+  "scripts": {
+    "build": "tsup src/main.ts --format esm,cjs --dts --clean",
+    "test": "vitest run --passWithNoTests",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ci-failure-pack/shared": "workspace:*",
+    "archiver": "^7.0.1"
+  }
+}

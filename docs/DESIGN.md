@@ -12,6 +12,7 @@ Default. Maximum four visible lines.
 
 ```md
 <!-- ci-failure-pack -->
+
 ❌ test failed in CI
 UserService creates users, Billing retries declined cards — 2 assertions failed
 ⚠ Likely: Node version mismatch (62%)
@@ -31,15 +32,16 @@ Brief plus environment and artifact context.
 
 ```md
 <!-- ci-failure-pack -->
+
 ❌ test failed in CI
 UserService creates users, Billing retries declined cards — 2 assertions failed
 ⚠ Likely: Node version mismatch (62%)
 ▶ Reproduce: npx ci-failure-pack replay failure-pack.zip
 
-| Check | CI | Local action |
-| --- | --- | --- |
-| Node | 20.11.1 | run `ci-failure-pack diff` |
-| Cache | miss | lockfile changed |
+| Check | CI      | Local action               |
+| ----- | ------- | -------------------------- |
+| Node  | 20.11.1 | run `ci-failure-pack diff` |
+| Cache | miss    | lockfile changed           |
 
 Artifact: failure-pack.zip
 ```
@@ -54,12 +56,12 @@ Rules:
 
 Standard plus details blocks.
 
-```md
+````md
 <details>
 <summary>Failed tests</summary>
 
-| Test | File | Assertion |
-| --- | --- | --- |
+| Test                      | File               | Assertion             |
+| ------------------------- | ------------------ | --------------------- |
 | UserService creates users | tests/user.test.ts | expected 201, got 500 |
 
 </details>
@@ -70,6 +72,7 @@ Standard plus details blocks.
 ```text
 last 200 lines
 ```
+````
 
 </details>
 ```

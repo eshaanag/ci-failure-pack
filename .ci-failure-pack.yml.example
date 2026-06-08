@@ -1,0 +1,19 @@
+comment_verbosity: brief
+bundle_name: failure-pack.zip
+log_tail_lines: 200
+flaky_detection: true
+auto_open_flaky_issue: false
+sensitive_env_vars:
+  - STRIPE_SECRET_KEY
+artifact_globs:
+  - "test-results/**/*"
+  - "playwright-report/**/*"
+causality_weights:
+  lockfile_changed: 90
+  runtime_version_mismatch: 85
+  missing_env_var: 80
+  cache_miss_after_lockfile: 65
+  test_file_changed: 55
+  flaky_history: 40
+  network_dependent_test: 20
+  runner_resource_pressure: 10

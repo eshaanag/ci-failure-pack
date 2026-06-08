@@ -1,0 +1,29 @@
+{
+  "name": "ci-failure-pack",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Black box recorder for failed CI runs.",
+  "type": "module",
+  "packageManager": "pnpm@11.5.1",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "lint": "eslint . --ext .ts --max-warnings 0",
+    "typecheck": "pnpm -r typecheck",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/archiver": "^6.0.3",
+    "@types/node": "^20.19.0",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.60.1",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.1.5",
+    "prettier": "^3.5.3",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.0"
+  }
+}
