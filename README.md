@@ -61,8 +61,8 @@ UserService creates users, Billing retries declined cards — 2 assertions faile
 | -------------- | --------------------------------------------------------------------------------------- |
 | ✅ Complete    | Product requirements, technical design, flows, and schema documents                     |
 | ✅ Complete    | pnpm monorepo foundation, shared interfaces, Zod schemas, action skeleton, CLI skeleton |
-| 🔄 In Progress | Environment capture with secret redaction                                               |
-| 📋 Planned     | Test output parsing for JUnit, Jest/Vitest JSON, TAP, Playwright, Go, and Rust          |
+| ✅ Complete    | Environment capture with secret redaction                                               |
+| 🔄 In Progress | Test output parsing for JUnit, Jest/Vitest JSON, TAP, Playwright, Go, and Rust          |
 | 📋 Planned     | Git context and failed command capture                                                  |
 | 📋 Planned     | Validated ZIP bundle packaging                                                          |
 | 📋 Planned     | PR comment posting and update flow                                                      |
