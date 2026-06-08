@@ -7,7 +7,7 @@
   "packageManager": "pnpm@11.5.1",
   "scripts": {
     "build": "pnpm -r build",
-    "test": "pnpm -r test",
+    "test": "vitest run --passWithNoTests tests/integration && pnpm --dir packages/shared test && pnpm --dir packages/action test && pnpm --dir packages/cli test",
     "lint": "eslint . --ext .ts --max-warnings 0",
     "typecheck": "pnpm -r typecheck",
     "format": "prettier --write .",

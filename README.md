@@ -80,7 +80,7 @@ UserService creates users, Billing retries declined cards — 2 assertions faile
 | ✅ Complete    | Configuration loading                                                                   |
 | ✅ Complete    | Lint and typecheck failure parsing                                                      |
 | ✅ Complete    | Docker build failure parsing                                                            |
-| 🔄 In Progress | End-to-end fixture integration tests                                                    |
+| ✅ Complete    | End-to-end fixture integration tests                                                    |
 | 📋 Planned     | CLI `open`                                                                              |
 | 📋 Planned     | Semantic release and npm publishing                                                     |
 
