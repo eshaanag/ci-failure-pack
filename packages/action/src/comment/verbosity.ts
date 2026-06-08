@@ -5,6 +5,8 @@ import type {
   ParsedTestOutput,
 } from "@ci-failure-pack/shared";
 
+import type { FlakeClassification } from "../analyze/flakeDetector.js";
+
 export const COMMENT_MARKER = "<!-- ci-failure-pack -->";
 
 export interface CommentContext {
@@ -14,6 +16,7 @@ export interface CommentContext {
   reproductionCommand: string;
   environment?: EnvironmentSnapshot;
   cacheState?: CacheState;
+  flakeClassifications?: readonly FlakeClassification[];
   artifactUrl?: string;
   logTail?: string;
 }
@@ -38,12 +41,24 @@ function causeSummary(causality: readonly CausalityScore[]): string {
     : `${cause.label} (${Math.round(cause.percentage)}%)`;
 }
 
+function flakeBadgeLines(classifications: readonly FlakeClassification[] | undefined): string[] {
+  return (classifications ?? [])
+    .filter(({ classification }) => classification !== "unknown")
+    .slice(0, 2)
+    .map((classification) =>
+      classification.classification === "flaky"
+        ? `🔁 ${escapeCell(classification.testName)} — likely flaky (${classification.failureCount} failures, no related changes)`
+        : `❌ ${escapeCell(classification.testName)} — likely broken by this PR (first failure on this commit)`,
+    );
+}
+
 /** Renders the default brief PR comment. */
 export function renderBriefComment(context: CommentContext): string {
   return [
     COMMENT_MARKER,
     `❌ ${context.jobName} failed`,
     failureSummary(context),
+    ...flakeBadgeLines(context.flakeClassifications),
     `⚠ Likely: ${causeSummary(context.causality)}`,
     `▶ Reproduce: \`${context.reproductionCommand}\``,
   ].join("\n");

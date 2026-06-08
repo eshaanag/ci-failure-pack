@@ -70,6 +70,31 @@ describe("PR comment formatting", () => {
     expect(output.split("\n")).toHaveLength(5);
   });
 
+  it("renders flaky and broken badges when classifications are available", () => {
+    const output = formatFailureComment(
+      {
+        ...context(),
+        flakeClassifications: [
+          {
+            testName: "Button renders",
+            classification: "flaky",
+            failureCount: 5,
+            reason: "Repeated unrelated failures.",
+          },
+          {
+            testName: "User creates profile",
+            classification: "broken",
+            failureCount: 1,
+            reason: "Related files changed.",
+          },
+        ],
+      },
+      "brief",
+    );
+    expect(output).toContain("🔁 Button renders — likely flaky");
+    expect(output).toContain("❌ User creates profile — likely broken by this PR");
+  });
+
   it("includes environment and artifact detail in standard mode", () => {
     const output = formatFailureComment(context(), "standard");
     expect(output).toContain("| NODE_ENV | test |");
