@@ -4,6 +4,7 @@ import { Command } from "commander";
 import { captureLocalEnvironment } from "./commands/captureLocal.js";
 import { diffBundle } from "./commands/diff.js";
 import { inspectBundle } from "./commands/inspect.js";
+import { replayFailure } from "./commands/replay.js";
 import { createLogger } from "./lib/logger.js";
 
 const logger = createLogger();
@@ -49,6 +50,28 @@ export function createProgram(): Command {
       });
       process.stdout.write(`${result.message}\n`);
     });
+
+  program
+    .command("replay")
+    .description("Replay a failure bundle locally.")
+    .argument("<bundle>", "Path to failure-pack.zip")
+    .option("--dry-run", "Print replay steps without executing them.", false)
+    .option("--no-install", "Skip dependency installation steps.", false)
+    .option("-y, --yes", "Proceed through safety prompts.", false)
+    .action(
+      async (
+        bundle: string,
+        options: { dryRun: boolean; install: boolean; yes: boolean },
+      ): Promise<void> => {
+        process.stdout.write(
+          `${await replayFailure(bundle, {
+            dryRun: options.dryRun,
+            noInstall: !options.install,
+            yes: options.yes,
+          })}\n`,
+        );
+      },
+    );
 
   return program;
 }
